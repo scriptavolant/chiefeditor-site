@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Contatti" description="Contatta il team di Chief Editor">
+<div class="container cpage">
+  <h1>Contatti</h1>
+  <p class="sub">Per feedback, segnalazioni bug o domande sul programma beta.</p>
+  <div class="contact-grid">
+    <a href="mailto:fabio@chiefeditor.app" class="ccard">
+      <span class="cicon">✉️</span>
+      <h2>Email</h2>
+      <p>fabio@chiefeditor.app</p>
+    </a>
+    <a href="https://github.com/scriptavolant/chief-editor/issues" target="_blank" rel="noopener" class="ccard">
+      <span class="cicon">🐛</span>
+      <h2>Bug & Feature</h2>
+      <p>Apri una issue su GitHub</p>
+    </a>
+    <a href="https://bsky.app/profile/chiefeditor.app" target="_blank" rel="noopener" class="ccard">
+      <span class="cicon">☁️</span>
+      <h2>Bluesky</h2>
+      <p>@chiefeditor.app</p>
+    </a>
+    <a href="https://mastodon.social/@chiefeditor" target="_blank" rel="noopener" class="ccard">
+      <span class="cicon">🐘</span>
+      <h2>Mastodon</h2>
+      <p>@chiefeditor@mastodon.social</p>
+    </a>
+  </div>
+  <div class="beta-note">
+    <h2>Programma Beta Tester</h2>
+    <p>Sei uno scrittore, editor o lettore forte interessato a testare Chief Editor prima del lancio pubblico? Scrivimi una email con due righe su di te. Il programma è riservato a un gruppo di massimo 15 persone.</p>
+    <a href="mailto:fabio@chiefeditor.app?subject=Beta%20Tester" class="beta-cta">Candidati come beta tester →</a>
+  </div>
+</div>
+</Base>
+<style>
+.cpage{padding:4rem 1.5rem 5rem;max-width:780px;}
+.cpage h1{font-family:var(--font-serif);font-size:2.25rem;color:var(--text);margin-bottom:.5rem;}
+.sub{color:var(--sub);margin-bottom:2.5rem;font-size:1.05rem;}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-bottom:3rem;}
+.ccard{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1.75rem 1rem;background:var(--surf);border:1px solid var(--border2);border-radius:14px;text-decoration:none;text-align:center;transition:all .2s;}
+.ccard:hover{border-color:rgba(196,181,253,.35);transform:translateY(-2px);background:rgba(124,58,237,.05);}
+.cicon{font-size:1.75rem;}
+.ccard h2{font-family:var(--font-sans);font-size:.9rem;font-weight:600;color:var(--text);}
+.ccard p{font-size:.825rem;color:var(--sub);}
+.beta-note{background:var(--surf);border:1px solid var(--border2);border-radius:14px;padding:2rem;}
+.beta-note h2{font-family:var(--font-serif);font-size:1.4rem;color:var(--text);margin-bottom:.75rem;}
+.beta-note p{font-size:.95rem;color:var(--text2);line-height:1.7;margin-bottom:1.25rem;}
+.beta-cta{display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--vio),var(--vio2));color:#fff;border-radius:9px;padding:.7rem 1.4rem;font-size:.9rem;font-weight:600;text-decoration:none;transition:opacity .2s;}
+.beta-cta:hover{opacity:.88;color:#fff;}
+@media(max-width:600px){.contact-grid{grid-template-columns:1fr 1fr;}}
+</style>

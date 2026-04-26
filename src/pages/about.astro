@@ -1,0 +1,126 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="About" description="Chi sono e come nasce Chief Editor">
+<div class="container about-wrap">
+  <div class="about-sidebar">
+    <div class="avatar-ring">
+      <div class="avatar-placeholder">FM</div>
+    </div>
+    <div class="about-links">
+      <a href="https://linktr.ee/fabio.masetti" target="_blank" rel="noopener" class="about-link">🌿 Linktree</a>
+      <a href="https://letteraterra.substack.com/" target="_blank" rel="noopener" class="about-link">📬 Letteraterra su Substack</a>
+      <a href="https://github.com/scriptavolant" target="_blank" rel="noopener" class="about-link">⌨️ GitHub</a>
+    </div>
+  </div>
+
+  <div class="about-content prose">
+    <h1>Chi sono</h1>
+
+    <p>Cerco dal 1992 un'etichetta che descriva il mio lavoro. 
+      <p>Progettista ICT prima, impiegato amministrativo poi, organizzatore e agitatore culturale, progettista nel campo della sostenibilità, oggi lavoro su temi ambientali e 
+      trasformazione dei sistemi, letteratura e tecnologia. </p>
+      <p>
+        Con un background pluriennale in ICT e comunicazione digitale, attraverso l'immaginario e le culture digitali
+        come spazio narrativo e infrastruttura criticai dai primi anni 2000.
+      </p>
+      <p>
+        Scrivo racconti, saggi e progetti editoriali ibridi, spesso al confine tra letteratura, ecologia e tecnologia.
+        Scrivo irregolarmente la newsletter <a href="https://letteraterra.substack.com/" target="_blank" rel="noopener noreferrer" title="Letteraterra on substack">Letteraterra</a>, taccuino ecocritico per un nuovo umanesimo naturale.
+      </p>
+      <p>Pacifista, vegano, pratico judo, vado a vela quando posso e sono un ciclista urbano dal 2008.</p>
+      <p>
+        La mia ricerca si muove tra scrittura, sistemi complessi e culture del margine.
+        Esploro forme editoriali ibride, tra longform, audio e narrative.
+        Mi interessano il Giappone, il mediterraneo, il nomadismo.
+      </p>
+      <p>Credo che scrivere significhi ricercare la pace universale.</p>
+    
+    <p>
+      Non sono uno sviluppatore di professione, ma come una lingua straniera so leggere il codice e 
+      un po' so anche scriverlo.
+      Chief Editor nasce da questa doppia appartenenza: alla letteratura, da sempre;
+      alla tecnologia, per curiosità e necessità.
+    </p>
+    <p>
+      L'idea è semplice. Ho cercato per anni uno strumento che mi aiutasse a scrivere
+      ogni giorno — non uno che scrivesse al posto mio, ma uno che leggesse quello
+      che scrivevo e mi dicesse la verità. Non esisteva. Allora ho provato a costruirlo.
+    </p>
+    <hr />
+
+    <h2>Cos'è Chief Editor</h2>
+    <p>
+      Chief Editor è un editor letterario personale con intelligenza artificiale.
+      Non genera testo: analizza quello che scrivi e ti dà un feedback onesto —
+      su voce narrativa, stile, immaginario, temi, risonanza filosofica.
+      Lo fa calibrando la critica sul tuo profilo letterario, sugli autori che ami,
+      sulle tradizioni che ti appartengono.
+    </p>
+    <p>
+      È un'app desktop — Windows, macOS, Linux — che funziona con le tue chiavi API di Anthropic, OpenAI, DeepSeek, Gemini.
+      I tuoi testi restano sul tuo computer, in file .md (markdown) leggibili con qualsiasi editor.
+      Non esiste un server centrale che raccoglie dati. Non esiste un abbonamento che
+      finanzia la tua dipendenza.
+    </p>
+    <p>
+      È una versione beta. Ci sono cose che mancano, cose che non funzionano ancora bene,
+      cose che cambieranno. Per questo cerco lettori forti e scrittori seri che vogliano
+      testarlo e dirmi la verità.
+    </p>
+
+    <hr />
+
+    <h2>Questo blog</h2>
+    <p>
+      Qui racconto il dietro le quinte: come nasce l'idea, come si costruisce il
+      prodotto che ti riguarda davvero, come si scrive ogni giorno anche quando non
+      si ha voglia. Parleremo di Chief Editor, ma anche di scrittura, di routine,
+      di libri, di autori, di tutto quello che fa la letteratura — dalle origini
+      dell'uomo al futuro ancora da scrivere.
+    </p>
+  </div>
+</div>
+</Base>
+
+<style>
+.about-wrap {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 4rem;
+  padding: 4rem 0 6rem;
+  align-items: start;
+}
+.about-sidebar { position: sticky; top: 90px; }
+.avatar-ring {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--vio), var(--vio2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+.avatar-placeholder {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+}
+.about-links { display: flex; flex-direction: column; gap: 0.5rem; }
+.about-link {
+  font-size: 0.85rem;
+  color: var(--text2);
+  text-decoration: none;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+}
+.about-link:hover { color: var(--vio3); }
+@media (max-width: 768px) {
+  .about-wrap { grid-template-columns: 1fr; gap: 2rem; }
+  .about-sidebar { position: static; display: flex; align-items: center; gap: 1.5rem; }
+}
+</style>

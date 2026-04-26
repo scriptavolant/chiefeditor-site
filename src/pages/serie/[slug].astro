@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+export async function getStaticPaths() {
+  const series = await getCollection('series');
+  return series.map(s=>({ params:{slug:s.slug}, props:{serie:s} }));
+}
+const { serie } = Astro.props;
+const posts = (await getCollection('blog', ({data})=>!data.draft&&data.series===serie.data.title)).sort((a,b)=>(a.data.seriesOrder||0)-(b.data.seriesOrder||0));
+function fmtDate(d) { return d.toLocaleDateString('it-IT',{day:'numeric',month:'long',year:'numeric'}); }
+---
+<Base title={`Serie: ${serie.data.title}`} description={serie.data.description}>
+<div class="container spage">
+  <div class="sbar" style={`background:${serie.data.color}`}></div>
+  <h1>{serie.data.title}</h1>
+  <p class="sdesc">{serie.data.description}</p>
+  {posts.map((p,i)=>(
+    <article class="sitem">
+      <span class="snum" style={`color:${serie.data.color}`}>#{p.data.seriesOrder||i+1}</span>
+      <div>
+        <time>{fmtDate(p.data.pubDate)}</time>
+        <h2><a href={`/blog/${p.slug}`}>{p.data.title}</a></h2>
+        <p>{p.data.description}</p>
+      </div>
+    </article>
+  ))}
+</div>
+</Base>
+<style>
+.spage{padding:4rem 1.5rem 5rem;max-width:740px;}
+.sbar{width:36px;height:6px;border-radius:3px;margin-bottom:1rem;}
+.spage h1{font-family:var(--font-serif);font-size:2rem;margin-bottom:.5rem;color:var(--text);}
+.sdesc{color:var(--sub);line-height:1.7;margin-bottom:2.5rem;}
+.sitem{padding:1.25rem 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:32px 1fr;gap:1rem;}
+.snum{font-family:var(--font-mono);font-size:.85rem;padding-top:.35rem;}
+.sitem time{font-size:.8rem;color:var(--sub);display:block;margin-bottom:.3rem;}
+.sitem h2{font-size:1.1rem;margin-bottom:.3rem;}
+.sitem h2 a{color:var(--text);text-decoration:none;}
+.sitem h2 a:hover{color:var(--vio3);}
+.sitem p{font-size:.875rem;color:var(--sub);}
+</style>

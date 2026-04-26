@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({data})=>!data.draft);
+  const tags = [...new Set(posts.flatMap(p=>p.data.tags))];
+  return tags.map(tag=>({ params:{tag}, props:{ posts: posts.filter(p=>p.data.tags.includes(tag)).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf()) } }));
+}
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+function fmtDate(d) { return d.toLocaleDateString('it-IT',{day:'numeric',month:'long',year:'numeric'}); }
+---
+<Base title={`Tag: ${tag}`}>
+<div class="container tpage">
+  <h1>Tag: <em>{tag}</em></h1>
+  <p class="sub">{posts.length} articoli</p>
+  {posts.map(p=>(
+    <article class="titem">
+      <time>{fmtDate(p.data.pubDate)}</time>
+      <h2><a href={`/blog/${p.slug}`}>{p.data.title}</a></h2>
+      <p>{p.data.description}</p>
+    </article>
+  ))}
+  <a href="/blog" class="back">← Tutti gli articoli</a>
+</div>
+</Base>
+<style>
+.tpage{padding:4rem 1.5rem 5rem;}
+.tpage h1{font-family:var(--font-serif);font-size:2rem;margin-bottom:.5rem;}
+.tpage h1 em{color:var(--vio3);font-style:italic;}
+.sub{color:var(--sub);margin-bottom:2.5rem;}
+.titem{padding:1.25rem 0;border-bottom:1px solid var(--border);}
+.titem time{font-size:.8rem;color:var(--sub);display:block;margin-bottom:.4rem;}
+.titem h2{font-size:1.15rem;margin-bottom:.35rem;}
+.titem h2 a{color:var(--text);text-decoration:none;}
+.titem h2 a:hover{color:var(--vio3);}
+.titem p{font-size:.875rem;color:var(--sub);}
+.back{display:inline-block;margin-top:2rem;color:var(--sub);font-size:.875rem;}
+.back:hover{color:var(--vio3);}
+</style>
