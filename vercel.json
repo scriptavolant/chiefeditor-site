@@ -43,7 +43,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.(?:png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf|eot)",
+      "source": "/(.*\\.(png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf|eot))",
       "headers": [
         {
           "key": "Cache-Control",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "source": "/downloads/(.*)\\.(?:exe|msi|dmg|AppImage|deb|zip)",
+      "source": "/downloads/(.*\\.(exe|msi|dmg|AppImage|deb|zip))",
       "headers": [
         {
           "key": "Content-Disposition",
