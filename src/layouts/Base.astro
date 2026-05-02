@@ -193,11 +193,11 @@ window.addEventListener('scroll', () => {
 
 // ── Cookie consent ──────────────────────────────────────────────────────────
 // Replace G-XXXXXXXXXX with your actual Google Analytics Measurement ID
-const GA_ID = 'G-XXXXXXXXXX';
+const GA_ID = import.meta.env.PUBLIC_GA_ID || '';
 const CONSENT_KEY = 'ce_cookie_consent';
 
 function loadGA() {
-  if (document.getElementById('ga-script')) return;
+  if (!GA_ID || document.getElementById('ga-script')) return;
   const s = document.createElement('script');
   s.id = 'ga-script';
   s.async = true;
