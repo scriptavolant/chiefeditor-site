@@ -157,14 +157,28 @@ declare module 'astro:content' {
   slug: "benvenuto-chief-editor";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".md"] };
 "otto-archetipi-letterari.md": {
 	id: "otto-archetipi-letterari.md";
   slug: "otto-archetipi-letterari";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
+} & { render(): Render[".md"] };
+"scrivere-tutti-i-giorni.md": {
+	id: "scrivere-tutti-i-giorni.md";
+  slug: "scrivere-tutti-i-giorni";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
+"strumenti-ai-chief-editor.md": {
+	id: "strumenti-ai-chief-editor.md";
+  slug: "strumenti-ai-chief-editor";
+  body: string;
+  collection: "blog";
+  data: any
 } & { render(): Render[".md"] };
 };
 "series": {
@@ -173,7 +187,7 @@ declare module 'astro:content' {
   slug: "come-funziona";
   body: string;
   collection: "series";
-  data: InferEntrySchema<"series">
+  data: any
 } & { render(): Render[".md"] };
 };
 
@@ -185,5 +199,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("./../../src/content/config.js");
+	export type ContentConfig = never;
 }
