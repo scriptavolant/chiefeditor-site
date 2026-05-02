@@ -1,20 +1,245 @@
 ---
 import Base from '../layouts/Base.astro';
+const updated = '3 maggio 2026';
 ---
-<Base title="Privacy Policy">
-<div class="container" style="padding:4rem 1.5rem 5rem;max-width:740px;">
-  <h1 style="font-family:var(--font-serif);font-size:2.25rem;color:var(--text);margin-bottom:2rem;">Privacy Policy</h1>
-  <div class="prose">
-    <p>I tuoi testi appartengono solo a te. Chief Editor non li legge, non li vende, non li condivide.</p>
-    <h2>Dati raccolti</h2>
-    <p>Chief Editor Desktop non raccoglie dati. Tutti i tuoi testi, il profilo letterario e le impostazioni sono salvati localmente sul tuo computer in ~/ChiefEditor/.</p>
-    <h2>Chiamate API</h2>
-    <p>L'unica connessione esterna è verso i provider AI che hai configurato (Anthropic, OpenAI, DeepSeek, Google Gemini). Questi ricevono solo il testo che invii per l'analisi, secondo le loro rispettive privacy policy.</p>
-    <h2>Questo sito</h2>
-    <p>Questo sito non usa cookie di profilazione. Non usa Google Analytics. Non traccio le visite.</p>
-    <h2>Contatti</h2>
-    <p>Per qualsiasi domanda: <a href="mailto:fabio@chiefeditor.app">fabio@chiefeditor.app</a></p>
-    <p style="color:var(--sub);font-size:.85rem;margin-top:2rem;">© {new Date().getFullYear()} noname ltd — Conforme al GDPR UE 2016/679</p>
+<Base title="Privacy Policy" description="Informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR)">
+<div class="container privacy-wrap">
+  <div class="privacy-content prose">
+
+    <h1>Informativa sulla Privacy</h1>
+    <p class="meta">Ai sensi del Regolamento UE 2016/679 (GDPR) — Ultimo aggiornamento: {updated}</p>
+
+    <hr />
+
+    <h2>1. Titolare del trattamento</h2>
+    <p>
+      Il Titolare del trattamento dei dati personali raccolti tramite questo sito è:
+    </p>
+    <p>
+      <strong>Fabio Masetti</strong><br />
+      Incaricato del trattamento: Fabio Masetti<br />
+      Contatto: <a href="mailto:fabio.masetti@gmail.com">fabio.masetti@gmail.com</a>
+    </p>
+
+    <hr />
+
+    <h2>2. Tipologia di dati raccolti</h2>
+    <p>
+      Questo sito raccoglie esclusivamente <strong>dati non sensibili</strong>. L'unico dato personale
+      che può essere trattato in modo diretto e volontario è l'<strong>indirizzo email</strong>,
+      qualora l'utente contatti il Titolare via email o si iscriva a eventuali comunicazioni.
+    </p>
+    <p>
+      Non vengono raccolti dati sensibili ai sensi dell'art. 9 GDPR (origini razziali o etniche,
+      convinzioni religiose, dati sanitari, orientamento sessuale, ecc.).
+    </p>
+    <p>
+      Come qualsiasi sito web, il server e gli strumenti di analisi possono registrare
+      automaticamente dati tecnici anonimi o aggregati (indirizzi IP anonimizzati, tipo di browser,
+      pagine visitate, durata della sessione) al solo fine di analisi statistica del traffico.
+    </p>
+
+    <hr />
+
+    <h2>3. Finalità e base giuridica del trattamento</h2>
+    <table>
+      <thead>
+        <tr><th>Finalità</th><th>Base giuridica</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Risposta a richieste via email</td>
+          <td>Esecuzione di misure precontrattuali / legittimo interesse (art. 6.1.b-f GDPR)</td>
+        </tr>
+        <tr>
+          <td>Analisi statistica del traffico web (aggregata e anonimizzata)</td>
+          <td>Legittimo interesse del Titolare (art. 6.1.f GDPR)</td>
+        </tr>
+        <tr>
+          <td>Erogazione del servizio e hosting del sito</td>
+          <td>Esecuzione del contratto con il fornitore di hosting (art. 6.1.b GDPR)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr />
+
+    <h2>4. I dati dell'utente restano sul suo computer</h2>
+    <p>
+      <strong>Chief Editor è un'applicazione desktop.</strong> Tutti i testi, il profilo letterario,
+      le impostazioni e le sessioni di lavoro sono salvati <strong>esclusivamente in locale</strong>
+      sul computer dell'utente, tipicamente nella cartella <code>~/ChiefEditor/</code>.
+      Il Titolare non ha accesso a tali dati, non li riceve, non li elabora e non li conserva
+      su alcun server.
+    </p>
+
+    <hr />
+
+    <h2>5. Fornitori di intelligenza artificiale — API di terze parti</h2>
+    <p>
+      Chief Editor funziona attraverso le <strong>chiavi API personali dell'utente</strong>,
+      configurate direttamente nell'applicazione. Quando l'utente invia un testo per l'analisi,
+      la richiesta è trasmessa direttamente dall'applicazione al provider AI selezionato,
+      senza intermediazione da parte del Titolare.
+    </p>
+    <p>
+      Il Titolare <strong>non ha visibilità né controllo</strong> sui dati inviati ai provider AI.
+      L'utente è pertanto invitato a consultare le informative sulla privacy e le
+      <em>data retention policy</em> dei rispettivi fornitori:
+    </p>
+    <ul>
+      <li>
+        <strong>Anthropic (Claude)</strong> —
+        <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> ·
+        <a href="https://www.anthropic.com/legal/usage-policy" target="_blank" rel="noopener noreferrer">Usage Policy</a>
+      </li>
+      <li>
+        <strong>OpenAI (GPT)</strong> —
+        <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> ·
+        <a href="https://platform.openai.com/docs/models/how-we-use-your-data" target="_blank" rel="noopener noreferrer">Data Retention (API)</a>
+      </li>
+      <li>
+        <strong>Google (Gemini)</strong> —
+        <a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a> ·
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+      </li>
+      <li>
+        <strong>DeepSeek</strong> —
+        <a href="https://www.deepseek.com/privacy_policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+      </li>
+    </ul>
+    <p>
+      La scelta del provider, la gestione delle chiavi API e la responsabilità per i dati
+      trasmessi tramite tali API restano in capo all'utente.
+    </p>
+
+    <hr />
+
+    <h2>6. Hosting e infrastruttura del sito</h2>
+    <p>
+      Questo sito è distribuito tramite <strong>Vercel Inc.</strong> (340 Pine Street, Suite 1200,
+      San Francisco, CA 94104, USA). Vercel può trattare alcuni dati tecnici (ad es. indirizzi IP)
+      per l'erogazione del servizio di hosting, in conformità con la propria
+      <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+      Il trasferimento dei dati verso gli USA avviene nel rispetto delle garanzie previste dal
+      GDPR (Data Privacy Framework UE-USA o clausole contrattuali tipo).
+    </p>
+
+    <hr />
+
+    <h2>7. Analisi del traffico</h2>
+    <p>
+      Il sito può avvalersi di strumenti comuni per l'analisi del traffico, tra cui
+      <strong>Google Analytics</strong> (Google LLC). Tali strumenti raccolgono dati aggregati
+      e anonimizzati sulle visite (pagine viste, provenienza geografica approssimativa,
+      tipo di dispositivo) al fine di migliorare il sito. Laddove venga utilizzato Google Analytics,
+      l'indirizzo IP è anonimizzato prima di qualsiasi elaborazione.
+    </p>
+    <p>
+      Per informazioni sul trattamento effettuato da Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.
+    </p>
+
+    <hr />
+
+    <h2>8. Conservazione dei dati</h2>
+    <p>
+      L'indirizzo email eventualmente comunicato via contatto diretto è conservato
+      per il tempo strettamente necessario a evadere la richiesta e, in ogni caso,
+      non oltre 24 mesi dall'ultima interazione, salvo obblighi di legge.
+      I dati tecnici di navigazione (ove raccolti) seguono le retention policy dei
+      rispettivi fornitori di servizi (Vercel, Google).
+    </p>
+
+    <hr />
+
+    <h2>9. Diritti dell'interessato</h2>
+    <p>
+      Ai sensi degli artt. 15–22 del GDPR, l'utente ha il diritto di:
+    </p>
+    <ul>
+      <li><strong>Accesso</strong> — ottenere conferma che siano o meno in corso trattamenti di dati personali che lo riguardano;</li>
+      <li><strong>Rettifica</strong> — ottenere la correzione di dati inesatti;</li>
+      <li><strong>Cancellazione</strong> — ottenere la cancellazione dei dati ("diritto all'oblio");</li>
+      <li><strong>Limitazione</strong> — ottenere la limitazione del trattamento in determinate circostanze;</li>
+      <li><strong>Portabilità</strong> — ricevere i dati in formato strutturato, leggibile da dispositivo automatico;</li>
+      <li><strong>Opposizione</strong> — opporsi al trattamento basato su legittimo interesse;</li>
+      <li><strong>Revoca del consenso</strong> — revocare in qualsiasi momento il consenso, ove il trattamento ne sia fondato.</li>
+    </ul>
+    <p>
+      Per esercitare tali diritti è sufficiente scrivere a:
+      <a href="mailto:fabio.masetti@gmail.com">fabio.masetti@gmail.com</a>
+    </p>
+    <p>
+      L'utente ha inoltre il diritto di proporre reclamo all'<strong>Autorità Garante per la
+      protezione dei dati personali</strong> (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">www.garanteprivacy.it</a>).
+    </p>
+
+    <hr />
+
+    <h2>10. Modifiche alla presente informativa</h2>
+    <p>
+      Il Titolare si riserva il diritto di aggiornare questa informativa in qualsiasi momento.
+      Le modifiche sostanziali saranno segnalate aggiornando la data in cima alla pagina.
+      Si consiglia di consultare questa pagina periodicamente.
+    </p>
+
+    <p class="meta" style="margin-top:2.5rem;">
+      © {new Date().getFullYear()} Fabio Masetti — Conforme al Regolamento UE 2016/679 (GDPR)
+    </p>
+
   </div>
 </div>
 </Base>
+
+<style>
+.privacy-wrap {
+  padding: 4rem 0 6rem;
+  max-width: 780px;
+  margin: 0 auto;
+}
+.privacy-content h1 {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+.meta {
+  font-size: 0.82rem;
+  color: var(--sub);
+  margin-bottom: 2rem;
+}
+.prose h2 {
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin: 1rem 0;
+}
+.prose th, .prose td {
+  text-align: left;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--border);
+}
+.prose th {
+  background: var(--surf2);
+  color: var(--text2);
+  font-weight: 600;
+}
+.prose td { color: var(--sub); }
+.prose code {
+  background: var(--surf2);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: var(--vio3);
+}
+@media (max-width: 768px) {
+  .privacy-wrap { padding: 2.5rem 1.25rem 4rem; }
+  .privacy-content h1 { font-size: 1.75rem; }
+  .prose table { font-size: 0.78rem; }
+  .prose th, .prose td { padding: 0.45rem 0.6rem; }
+}
+</style>

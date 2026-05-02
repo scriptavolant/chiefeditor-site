@@ -1,0 +1,201 @@
+---
+import Base from '../layouts/Base.astro';
+const updated = '3 maggio 2026';
+---
+<Base title="Disclaimer" description="Limitazione di responsabilità per il software Chief Editor Beta e per i contenuti di questo sito.">
+<div class="container disclaimer-wrap">
+  <div class="disclaimer-content prose">
+
+    <div class="beta-badge">BETA SOFTWARE</div>
+    <h1>Disclaimer — Limitazione di responsabilità</h1>
+    <p class="meta">Ultimo aggiornamento: {updated}</p>
+
+    <p class="lead">
+      Prima di scaricare e installare Chief Editor, leggi attentamente questa pagina.
+      Il download e l'utilizzo del software implicano l'accettazione delle condizioni
+      descritte di seguito.
+    </p>
+
+    <hr />
+
+    <h2>1. Software in fase Beta</h2>
+    <p>
+      Chief Editor è attualmente distribuito come <strong>software in fase beta (versione
+      di test)</strong>. Ciò significa che il programma è ancora in fase di sviluppo attivo,
+      può contenere difetti, comportamenti inattesi, funzionalità incomplete o non stabili.
+    </p>
+    <p>
+      L'utilizzo della versione beta è destinato a utenti consapevoli dei rischi connessi
+      all'uso di software non ancora rilasciato come versione stabile. <strong>Non è
+      consigliato utilizzarlo in ambienti di produzione o per gestire documenti
+      di importanza critica senza aver effettuato copie di backup.</strong>
+    </p>
+
+    <hr />
+
+    <h2>2. Sviluppo assistito da intelligenza artificiale</h2>
+    <p>
+      Il codice sorgente di Chief Editor è stato sviluppato con il supporto di
+      <strong>agenti di intelligenza artificiale di Anthropic</strong> (in particolare
+      Claude e Claude Code). L'utilizzo di strumenti AI nel processo di sviluppo,
+      per quanto supervisionato dal titolare del progetto, introduce una componente
+      di incertezza ulteriore rispetto allo sviluppo software tradizionale.
+    </p>
+    <p>
+      Il Titolare dichiara di aver revisionato il codice nella misura del possibile,
+      ma non può garantire l'assoluta assenza di errori derivanti o amplificati
+      dall'uso di tali strumenti.
+    </p>
+
+    <hr />
+
+    <h2>3. Esclusione di responsabilità per malfunzionamenti</h2>
+    <p>
+      Il software Chief Editor è fornito <strong>"così com'è" (<em>as is</em>)</strong>,
+      senza garanzie di alcun tipo, esplicite o implicite, incluse ma non limitate a:
+    </p>
+    <ul>
+      <li>garanzie di commerciabilità o idoneità a uno scopo specifico;</li>
+      <li>garanzie di continuità del servizio, assenza di interruzioni o errori;</li>
+      <li>garanzie di compatibilità con specifiche configurazioni hardware o software.</li>
+    </ul>
+    <p>
+      <strong>Fabio Masetti, titolare del progetto, declina ogni responsabilità</strong>
+      per danni diretti, indiretti, incidentali, consequenziali o di qualsiasi altra natura
+      derivanti da:
+    </p>
+    <ul>
+      <li>malfunzionamenti, crash o comportamenti anomali del software;</li>
+      <li>perdita di dati, testi o elaborati generati o gestiti tramite l'applicazione;</li>
+      <li>incompatibilità con il sistema operativo o altri programmi installati;</li>
+      <li>interruzioni o variazioni nelle API dei provider di intelligenza artificiale;</li>
+      <li>costi imprevisti derivanti dall'uso delle API di terze parti.</li>
+    </ul>
+
+    <hr />
+
+    <h2>4. Responsabilità dell'utente per le API di terze parti</h2>
+    <p>
+      Chief Editor si connette ai servizi di provider AI esterni (Anthropic, OpenAI,
+      Google Gemini, DeepSeek) tramite le <strong>chiavi API personali dell'utente</strong>.
+      L'utente è il solo responsabile:
+    </p>
+    <ul>
+      <li>della custodia e sicurezza delle proprie chiavi API;</li>
+      <li>dei costi di utilizzo addebitati dai provider AI;</li>
+      <li>del rispetto dei termini di servizio di ciascun provider.</li>
+    </ul>
+    <p>
+      Il Titolare non è in alcun modo responsabile per spese, sospensioni di account
+      o violazioni dei termini di servizio dei provider AI derivanti dall'uso del software.
+    </p>
+
+    <hr />
+
+    <h2>5. Contenuti del sito e del blog</h2>
+    <p>
+      I contenuti pubblicati su questo sito (articoli, guide, opinioni) hanno
+      finalità esclusivamente informativa. Il Titolare non garantisce la completezza,
+      l'accuratezza o l'aggiornamento delle informazioni pubblicate e non è responsabile
+      per decisioni prese dall'utente sulla base di tali contenuti.
+    </p>
+
+    <hr />
+
+    <h2>6. Aggiornamenti e discontinuità del progetto</h2>
+    <p>
+      Trattandosi di un progetto personale in fase sperimentale, il Titolare si riserva
+      il diritto di interrompere, modificare o ridistribuire il software in qualsiasi
+      momento, senza preavviso e senza obbligo di continuità. Eventuali versioni future
+      potrebbero non essere compatibili con la versione corrente.
+    </p>
+
+    <hr />
+
+    <h2>7. Contatti</h2>
+    <p>
+      Per segnalazioni di bug, problemi di sicurezza o richieste di chiarimento:
+      <a href="mailto:fabio.masetti@gmail.com">fabio.masetti@gmail.com</a>
+    </p>
+
+    <div class="disclaimer-cta">
+      <p>Hai letto e accettato le condizioni? Puoi procedere con il download.</p>
+      <a href="/download" class="cta-btn">Vai al Download →</a>
+    </div>
+
+    <p class="meta" style="margin-top:2.5rem;">
+      © {new Date().getFullYear()} Fabio Masetti — Chief Editor Beta
+    </p>
+
+  </div>
+</div>
+</Base>
+
+<style>
+.disclaimer-wrap {
+  padding: 4rem 0 6rem;
+  max-width: 780px;
+  margin: 0 auto;
+}
+.beta-badge {
+  display: inline-block;
+  background: rgba(234,88,12,0.15);
+  border: 1px solid rgba(234,88,12,0.4);
+  color: #fb923c;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+.disclaimer-content h1 {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+.meta {
+  font-size: 0.82rem;
+  color: var(--sub);
+  margin-bottom: 2rem;
+}
+.lead {
+  font-size: 1.05rem;
+  color: var(--text2);
+  line-height: 1.75;
+  border-left: 3px solid rgba(234,88,12,0.5);
+  padding-left: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.prose h2 { margin-top: 2.25rem; margin-bottom: 0.75rem; }
+.disclaimer-cta {
+  margin-top: 2.5rem;
+  padding: 1.75rem 2rem;
+  background: rgba(124,58,237,0.07);
+  border: 1px solid rgba(196,181,253,0.2);
+  border-radius: 14px;
+  text-align: center;
+}
+.disclaimer-cta p {
+  color: var(--text2);
+  margin-bottom: 1.1rem;
+  font-size: 0.95rem;
+}
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--vio), var(--vio2));
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.cta-btn:hover { opacity: 0.88; color: #fff; }
+@media (max-width: 768px) {
+  .disclaimer-wrap { padding: 2.5rem 1.25rem 4rem; }
+  .disclaimer-content h1 { font-size: 1.75rem; }
+}
+</style>

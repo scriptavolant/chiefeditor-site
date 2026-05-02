@@ -5,6 +5,19 @@ import Base from '../layouts/Base.astro';
 <div class="container dlpage">
   <h1>Download Chief Editor</h1>
   <p class="dlsub">Beta v1.0.7 — Windows, macOS, Linux</p>
+  <div class="disclaimer-notice">
+    <div class="dn-icon">⚠️</div>
+    <div class="dn-body">
+      <strong>Software Beta — Leggi prima di scaricare</strong>
+      <p>
+        Chief Editor è in fase beta e sviluppato con il supporto di agenti AI di Anthropic.
+        Il titolare del progetto declina ogni responsabilità per malfunzionamenti, perdita di dati
+        o costi imprevisti derivanti dall'uso del software o delle API di terze parti.
+      </p>
+      <a href="/disclaimer" class="dn-link">Leggi il Disclaimer completo →</a>
+    </div>
+  </div>
+
   <div class="dl-cards">
     <div class="dl-card">
       <div class="dl-icon">🪟</div>
@@ -52,6 +65,12 @@ import Base from '../layouts/Base.astro';
 </Base>
 <style>
 .dlpage{padding:4rem 1.5rem 5rem;}
+.disclaimer-notice{display:flex;gap:1rem;align-items:flex-start;background:rgba(234,88,12,.07);border:1px solid rgba(234,88,12,.35);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem;}
+.dn-icon{font-size:1.4rem;line-height:1;flex-shrink:0;padding-top:.1rem;}
+.dn-body strong{display:block;color:#fb923c;font-size:.9rem;font-weight:700;margin-bottom:.35rem;}
+.dn-body p{font-size:.85rem;color:var(--sub);line-height:1.6;margin-bottom:.5rem;}
+.dn-link{font-size:.82rem;color:#fb923c;font-weight:600;text-decoration:underline;}
+.dn-link:hover{color:var(--vio3);}
 .dlpage h1{font-family:var(--font-serif);font-size:2.5rem;color:var(--text);margin-bottom:.5rem;}
 .dlsub{color:var(--sub);font-size:1.05rem;margin-bottom:3rem;}
 .dl-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem;margin-bottom:3rem;}
