@@ -43,16 +43,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf|eot))",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400, stale-while-revalidate=604800"
-        }
-      ]
-    },
-    {
-      "source": "/downloads/(.*\\.(exe|msi|dmg|AppImage|deb|zip))",
+      "source": "/downloads/(.*)",
       "headers": [
         {
           "key": "Content-Disposition",
