@@ -32,7 +32,7 @@ const current = Astro.url.pathname;
   <title>{title === 'Chief Editor' ? title : `${title} — Chief Editor`}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
-
+<Analytics />
   <!-- OG -->
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
