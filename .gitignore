@@ -1,2 +1,9 @@
 node_modules/
 dist/
+
+# Binary installers — host on GitHub Releases, not in the repo
+downloads/*.exe
+downloads/*.msi
+downloads/*.dmg
+downloads/*.AppImage
+downloads/*.deb
