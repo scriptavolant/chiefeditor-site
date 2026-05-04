@@ -24,8 +24,8 @@ import Base from '../layouts/Base.astro';
       <h2>Windows</h2>
       <p>Windows 10 / 11 · 64-bit</p>
       <div class="dl-buttons">
-        <a href="/downloads/chief-editor-setup-1.0.7.exe" class="dl-primary" download>Scarica .exe</a>
-        <a href="/downloads/chief-editor-1.0.7.msi" class="dl-secondary" download>.msi</a>
+        <a href="/downloads/chief-editor-setup-1.0.7.exe" class="dl-primary" download data-platform="windows" data-format="exe">Scarica .exe</a>
+        <a href="/downloads/chief-editor-1.0.7.msi" class="dl-secondary" download data-platform="windows" data-format="msi">.msi</a>
       </div>
     </div>
     <div class="dl-card">
@@ -33,7 +33,7 @@ import Base from '../layouts/Base.astro';
       <h2>macOS</h2>
       <p>Intel · Apple Silicon</p>
       <div class="dl-buttons">
-        <a href="/downloads/chief-editor-1.0.7.dmg" class="dl-primary" download>Scarica .dmg</a>
+        <a href="/downloads/chief-editor-1.0.7.dmg" class="dl-primary" download data-platform="macos" data-format="dmg">Scarica .dmg</a>
       </div>
     </div>
     <div class="dl-card">
@@ -41,8 +41,8 @@ import Base from '../layouts/Base.astro';
       <h2>Linux</h2>
       <p>x64 · AppImage / deb</p>
       <div class="dl-buttons">
-        <a href="/downloads/chief-editor-1.0.7.AppImage" class="dl-primary" download>AppImage</a>
-        <a href="/downloads/chief-editor-1.0.7.deb" class="dl-secondary" download>.deb</a>
+        <a href="/downloads/chief-editor-1.0.7.AppImage" class="dl-primary" download data-platform="linux" data-format="appimage">AppImage</a>
+        <a href="/downloads/chief-editor-1.0.7.deb" class="dl-secondary" download data-platform="linux" data-format="deb">.deb</a>
       </div>
     </div>
   </div>
@@ -63,6 +63,19 @@ import Base from '../layouts/Base.astro';
   </div>
 </div>
 </Base>
+
+<script>
+  import { track } from '@vercel/analytics';
+  document.querySelectorAll<HTMLAnchorElement>('[data-platform]').forEach((link) => {
+    link.addEventListener('click', () => {
+      track('download', {
+        platform: link.dataset.platform ?? '',
+        format: link.dataset.format ?? '',
+      });
+    });
+  });
+</script>
+
 <style>
 .dlpage{padding:4rem 1.5rem 5rem;}
 .disclaimer-notice{display:flex;gap:1rem;align-items:flex-start;background:rgba(234,88,12,.07);border:1px solid rgba(234,88,12,.35);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem;}
