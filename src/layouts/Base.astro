@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import SpeedInsights from '@vercel/speed-insights/astro';
 interface Props {
   title?: string;
   description?: string;
@@ -171,6 +172,8 @@ const current = Astro.url.pathname;
     </div>
   </div>
 </div>
+
+<SpeedInsights />
 
 <script>
 // Mobile menu toggle
