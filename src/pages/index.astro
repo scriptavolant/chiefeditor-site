@@ -1,895 +1,880 @@
 ---
 import Base from "../layouts/Base.astro";
-import { getCollection } from "astro:content";
 
-const allPosts = await getCollection("blog", ({ data }) => !data.draft);
-const pinnedPosts = allPosts
-  .filter((p) => p.data.pinned)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const recentPosts = allPosts
-  .filter((p) => !p.data.pinned)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 6);
+const tickerItems = [
+  "750 parole al giorno",
+  "Tua proprietà intellettuale",
+  "8 archetipi letterari",
+  "Timer e Pomodoro integrati",
+  "Critica di qualità professionale",
+  "Dal diario all'opera strutturata",
+  "Privacy GDPR garantita",
+  "Streak quotidiana e statistiche",
+];
 
-// Tags cloud
-const tagMap: Record<string, number> = {};
-allPosts.forEach((p) =>
-  p.data.tags.forEach((t) => {
-    tagMap[t] = (tagMap[t] || 0) + 1;
-  }),
-);
-const topTags = Object.entries(tagMap)
-  .sort((a, b) => b[1] - a[1])
-  .slice(0, 18);
+const features = [
+  {
+    icon: "📖",
+    title: "Critica letteraria AI",
+    desc: "Score 1-10 su voce, stile, immaginario, temi e risonanza filosofica. Come un editor professionista, ogni giorno.",
+    tag: "Chief Editor",
+    color: "#7c6af7",
+  },
+  {
+    icon: "🎭",
+    title: "Profilo e archetipo",
+    desc: "Otto archetipi letterari. L'AI impara chi sei come scrittore e calibra ogni analisi sulla tua voce specifica.",
+    tag: "Identità",
+    color: "#e8c84a",
+  },
+  {
+    icon: "📚",
+    title: "Opere strutturate",
+    desc: "Romanzi, saggi, raccolte. Opera, capitoli e sezioni: assegna i testi del diario direttamente ai tuoi manoscritti.",
+    tag: "Long-form",
+    color: "#4ade80",
+  },
+  {
+    icon: "⏱️",
+    title: "Timer e Pomodoro",
+    desc: "Scrivi con focus totale: countdown personalizzabile e tecnica Pomodoro integrata. Misura ogni minuto di scrittura.",
+    tag: "Focus",
+    color: "#60a5fa",
+  },
+  {
+    icon: "📊",
+    title: "Statistiche complete",
+    desc: "Streak, score nel tempo, tempo di scrittura e distribuzione degli umori. Vedi la crescita sessione per sessione.",
+    tag: "Crescita",
+    color: "#e879f9",
+  },
+  {
+    icon: "🔒",
+    title: "Privacy assoluta",
+    desc: "I tuoi testi appartengono solo a te. Nessuno li legge. GDPR compliant. Proprietà intellettuale garantita.",
+    tag: "Privacy",
+    color: "#5eead4",
+  },
+];
 
-// Series
-const allSeries = await getCollection("series");
+const audience = [
+  {
+    emoji: "✍️",
+    who: "Aspiranti scrittori",
+    cosa: 'Hai un romanzo in testa da anni. 750 parole al giorno trasformano quel "prima o poi" in 270.000 parole in un anno.',
+    grad: "linear-gradient(135deg,#7c6af7,#a78bfa)",
+  },
+  {
+    emoji: "📔",
+    who: "Diaristi",
+    cosa: "Il diario che legge tra le righe, capisce il tuo mondo interiore e cresce con te sessione dopo sessione.",
+    grad: "linear-gradient(135deg,#e8c84a,#f5d76e)",
+  },
+  {
+    emoji: "📗",
+    who: "Autori emergenti",
+    cosa: "Un editor AI sempre disponibile. Analisi critica di qualità professionale a una frazione del costo tradizionale.",
+    grad: "linear-gradient(135deg,#4ade80,#22c55e)",
+  },
+  {
+    emoji: "🖊️",
+    who: "Professionisti creativi",
+    cosa: "Sviluppa uno stile riconoscibile. Chief Editor impara chi sei come scrittore e calibra ogni suggerimento su di te.",
+    grad: "linear-gradient(135deg,#e879f9,#a78bfa)",
+  },
+];
 
-function formatDate(d: Date) {
-  return d.toLocaleDateString("it-IT", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
+const steps = [
+  {
+    n: "1",
+    title: "Scegli e scrivi",
+    body: "Seleziona una categoria, leggi il prompt AI personalizzato. Poi scrivi liberamente, senza correggere, senza fermarti.",
+  },
+  {
+    n: "2",
+    title: "Ricevi la critica",
+    body: "Il Chief Editor legge il testo, assegna uno score su cinque dimensioni e propone riferimenti, nota editoriale ed esercizio.",
+  },
+  {
+    n: "3",
+    title: "Costruisci l'opera",
+    body: "Assegna i testi migliori ai capitoli del romanzo. Dal diario quotidiano al manoscritto compiuto.",
+  },
+];
+
+const scoreInsights = [
+  ["🗣️", "Voce narrativa", "Riconoscibile e autentica tra mille altre"],
+  ["✒️", "Stile e ritmo", "Coerenza lessicale, musica della prosa"],
+  ["🔭", "Risonanza filosofica", "La capacità di toccare domande universali"],
+];
+
+const scoreBars = [
+  ["Voce narrativa", 82, "#7c6af7"],
+  ["Stile", 71, "#e8c84a"],
+  ["Immaginario", 76, "#e879f9"],
+  ["Temi", 68, "#60a5fa"],
+  ["Risonanza filos.", 74, "#4ade80"],
+];
 ---
 
-<Base>
-  <!-- ══════════════════════════════════════════════
-     HERO — Download + Video
-══════════════════════════════════════════════ -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-header">
-        <div class="hero-badge">
-          <span class="pulse"></span>
-          v1.0.7 Beta
-        </div>
-        <h1 class="hero-title">
-          Il tuo editor <em>letterario</em> con AI
+<Base
+  title="Chief Editor"
+  description="Scrivi ogni giorno, ricevi critica letteraria AI e trasforma il diario in un'opera strutturata."
+>
+  <section class="landing-hero">
+    <div class="container hero-shell">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span>Il tuo editor letterario con AI</p>
+        <h1>
+          Scrivi ogni giorno.
+          <em>La tua voce</em>
+          diventa un'opera.
         </h1>
         <p class="hero-sub">
-          Scrivi ogni giorno. Ricevi una critica onesta. Trova la tua voce
-          letteraria.
+          750 parole al giorno. Un editor AI che capisce la tua identità
+          letteraria. Dal frammento di diario al romanzo compiuto.
         </p>
+        <div class="hero-actions" aria-label="Azioni principali">
+          <a class="btn btn-primary" href="/download">Download Beta</a>
+          <a class="btn btn-secondary" href="/aiuto">Scopri come funziona</a>
+        </div>
+        <div class="hero-proof">
+          <span>Gratis per il tier base</span>
+          <span>Privacy totale sui testi</span>
+          <span>AI calibrata sulla tua voce</span>
+        </div>
       </div>
 
-      <div class="hero-grid">
-        <!-- LEFT: Download -->
-        <div class="hero-left">
-          <div class="download-box">
-            <div class="download-label">Download gratuito — BYOK</div>
-            <div class="download-btns">
-              <a
-                href="/downloads/chief-editor-setup-1.0.7.exe"
-                class="dl-btn"
-                download
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                  ><rect x="2" y="3" width="20" height="14" rx="2"></rect><path
-                    d="M8 21h8M12 17v4"></path></svg
-                >
-                <span>
-                  <strong>Windows</strong>
-                  <small>.exe / .msi · 64-bit</small>
-                </span>
-              </a>
-              <a
-                href="/downloads/chief-editor-1.0.7.dmg"
-                class="dl-btn"
-                download
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                  ><path
-                    d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"
-                  ></path></svg
-                >
-                <span>
-                  <strong>macOS</strong>
-                  <small>.dmg · Intel & Apple Silicon</small>
-                </span>
-              </a>
-              <a
-                href="/downloads/chief-editor-1.0.7.AppImage"
-                class="dl-btn"
-                download
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                  ><circle cx="12" cy="12" r="10"></circle><path
-                    d="m4.93 4.93 14.14 14.14"></path></svg
-                >
-                <span>
-                  <strong>Linux</strong>
-                  <small>.AppImage / .deb · x64</small>
-                </span>
-              </a>
-            </div>
-            <p class="download-note">
-              Richiede chiave API Anthropic · <a href="/aiuto#byok"
-                >Cos'è BYOK?</a
-              >
-            </p>
-          </div>
-        </div>
-
-        <!-- RIGHT: Video -->
-        <div class="hero-right">
-          <div class="video-frame">
-            <div class="video-glow"></div>
-            <iframe
-              src="https://www.youtube.com/embed/NDG6klk7tMI?si=kkiNM3eCh84ICL6E"
-              title="Chief Editor — presentazione"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              loading="lazy"></iframe>
-          </div>
-          <div class="donate-box">
-            <a
-              href="https://www.paypal.com/donate?hosted_button_id=FYTEBXM23E36E"
-              class="donate-btn"
-              target="_blank"
-              rel="noopener"
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.622 1.566 1.035.974 1.481 2.408 1.34 3.948-.173 1.92-.98 3.181-2.19 4.15-.883.712-1.988 1.19-3.087 1.565-1.827.625-3.691 1.062-5.173 1.514-.264.081-.521.15-.767.21a.64.64 0 0 1-.267 0c-.265-.06-.522-.129-.767-.21-1.482-.452-3.346-.889-5.173-1.514-1.099-.375-2.204-.853-3.087-1.565C.645 6.615-.162 5.354 0 3.434.141 1.894.587.46 1.622.486 2.666.512 4.674.055 7.244.055h7.46c.524 0 .972.382 1.054.901l3.107 19.696a.641.641 0 0 1-.633.74H16.92c-.446 0-.84-.37-.934-.813a.638.638 0 0 1 .063-.362l1.348-6.956c.042-.216.055-.333.055-.333.117-.665.117-1.176 0-1.519-.426-1.235-1.744-1.635-3.146-1.635h-4.49c-.45 0-.84.37-.934.813a.638.638 0 0 1 .063.362l1.348 6.956c.042.216.055.333.055.333.117.665.117 1.176 0 1.519-.426 1.235-1.744 1.635-3.146 1.635H7.076z"
-                ></path>
-              </svg>
-              Supporta il progetto
-            </a>
-          </div>
-        </div>
+      <div class="hero-product" aria-label="Anteprima Chief Editor">
+        <iframe
+          src="https://www.youtube.com/embed/NDG6klk7tMI"
+          title="Chief Editor - presentazione"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="eager"></iframe>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════
-     INTRO TEXT
-══════════════════════════════════════════════ -->
-  <section class="intro">
-    <div class="container intro-inner">
-      <div class="intro-line"></div>
-      <div class="intro-text">
+  <section class="ticker" aria-label="Punti chiave">
+    <div class="ticker-fade ticker-fade-left"></div>
+    <div class="ticker-fade ticker-fade-right"></div>
+    <div class="ticker-track">
+      {[...tickerItems, ...tickerItems].map((item) => (
+        <span class="ticker-item"><b>✦</b>{item}</span>
+      ))}
+    </div>
+  </section>
+
+  <section class="product-section features-section">
+    <div class="container">
+      <div class="section-kicker">Funzionalità</div>
+      <h2>Un editor che <em>ti conosce davvero.</em></h2>
+      <div class="feature-grid">
+        {features.map((feature) => (
+          <article class="feature-card">
+            <div class="feature-icon">{feature.icon}</div>
+            <h3>{feature.title}</h3>
+            <p>{feature.desc}</p>
+            <span class="feature-tag" style={`--tag-color:${feature.color}`}>{feature.tag}</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="product-section audience-section">
+    <div class="container">
+      <div class="section-kicker">Per chi è Chief Editor</div>
+      <h2>Chiunque abbia <em>qualcosa da dire.</em></h2>
+      <div class="audience-grid">
+        {audience.map((item) => (
+          <article class="audience-card" style={`--card-line:${item.grad}`}>
+            <span class="audience-line"></span>
+            <div class="audience-emoji">{item.emoji}</div>
+            <h3>{item.who}</h3>
+            <p>{item.cosa}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="product-section steps-section">
+    <div class="container steps-container">
+      <div class="section-kicker">Come funziona</div>
+      <h2>Tre passi. <em>Ogni giorno.</em></h2>
+      <div class="steps-grid">
+        <span class="steps-line" aria-hidden="true"></span>
+        {steps.map((step) => (
+          <article class="step-card">
+            <div class="step-number">{step.n}</div>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="product-section score-section">
+    <div class="container score-grid">
+      <div class="score-copy">
+        <div class="section-kicker">Lo score Chief Editor</div>
+        <h2>Lo score che <em>misura la crescita.</em></h2>
+        <p class="score-lead">
+          Da 1 a 10 su cinque dimensioni letterarie. Non misura la grammatica:
+          misura quanto sei diventato scrittore.
+        </p>
+        <div class="score-insights">
+          {scoreInsights.map(([icon, title, text]) => (
+            <article class="score-insight">
+              <div>{icon}</div>
+              <span>
+                <strong>{title}</strong>
+                <small>{text}</small>
+              </span>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="score-panel">
+        <div class="score-panel-head">
+          <div>
+            <span>Chief Editor Score</span>
+            <small>sessione del 12 marzo</small>
+          </div>
+          <div class="score-value">
+            <strong>7.4</strong>
+            <small>/10</small>
+          </div>
+        </div>
+        <div class="score-bars">
+          {scoreBars.map(([label, value, color]) => (
+            <div class="score-row" style={`--bar:${color}; --value:${value}%`}>
+              <span>{label}</span>
+              <div class="score-bar"><i></i></div>
+              <b>{(Number(value) / 10).toFixed(1)}</b>
+            </div>
+          ))}
+        </div>
+        <blockquote>
+          “Una scrittura che abita il margine tra il ricordo e il sogno.
+          Fidarsi della voce senza giustificarsi.”
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="product-section graph-section">
+    <div class="container graph-grid">
+      <div>
+        <div class="section-kicker">Profilo letterario</div>
+        <h2>La tua voce dentro una <em>mappa viva.</em></h2>
         <p>
-          Benvenuto nel blog di <strong>Chief Editor</strong>, il primo personal
-          editor basato su AI. Racconteremo lo sviluppo del progetto, ma anche
-          scrittura, routine letteraria, editoria, libri e autori — tutto ciò
-          che fa la letteratura, dalle origini al futuro.
-        </p>
-        <p class="intro-text">
-          Chief Editor nasce da una constatazione: scrivere ogni giorno è
-          difficile non perché manchino le parole, ma perché manca un lettore
-          vero, che dia feedback onesti e ricordi cosa hai scritto ieri. Non
-          sostituisce un editor umano, ma popola lo spazio solitario tra il
-          foglio bianco e il testo pronto a essere condiviso. "Ogni grande
-          scrittore ha avuto un editor esigente. Chief Editor è il tuo."
-        </p>
-        <p class="intro-text">
-          Tre principi guidano ogni scelta: la critica è onesta, non
-          incoraggiante, e lo scoring misura la maturazione; i dati appartengono
-          allo scrittore, salvati localmente in .md senza passare per server
-          centrali; lo strumento si adatta a chi scrive, con profilo, tipologia
-          di testo e font configurabili.
-        </p>
-
-        <p class="intro-cta-text">
-          Intanto se lo vuoi testare, <a href="/download"
-            >scarica la versione beta v1.0.7</a
-          >.
+          Chief Editor collega archetipi, influenze e autori adiacenti per
+          restituirti una lettura sempre più precisa del tuo percorso.
         </p>
       </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════
-     PINNED POSTS
-══════════════════════════════════════════════ -->
-  {
-    pinnedPosts.length > 0 && (
-      <section class="section pinned-section">
-        <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">📌 In evidenza</h2>
-          </div>
-          <div class="pinned-grid">
-            {pinnedPosts.map((post) => (
-              <article class="pinned-card">
-                {post.data.heroImage && (
-                  <img
-                    src={post.data.heroImage}
-                    alt=""
-                    class="pinned-img"
-                    loading="lazy"
-                  />
-                )}
-                <div class="pinned-body">
-                  {post.data.series && (
-                    <span class="post-series">{post.data.series}</span>
-                  )}
-                  <h3 class="pinned-title">
-                    <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-                  </h3>
-                  <p class="pinned-desc">{post.data.description}</p>
-                  <div class="post-meta">
-                    <time>{formatDate(post.data.pubDate)}</time>
-                    {post.data.tags.slice(0, 2).map((t) => (
-                      <a href={`/tag/${t}`} class="tag">
-                        {t}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
-
-  <!-- ══════════════════════════════════════════════
-     RECENT POSTS
-══════════════════════════════════════════════ -->
-  <section class="section posts-section">
-    <div class="container posts-layout">
-      <!-- POSTS -->
-      <div class="posts-main">
-        <div class="section-header">
-          <h2 class="section-title">Ultimi articoli</h2>
-          <a href="/blog" class="section-more">Vedi tutti →</a>
-        </div>
-        {
-          recentPosts.length === 0 && (
-            <p class="empty-state">Nessun post ancora. In arrivo presto.</p>
-          )
-        }
-        <div class="posts-list">
-          {
-            recentPosts.map((post) => (
-              <article class="post-card">
-                <div class="post-card-meta">
-                  <time>{formatDate(post.data.pubDate)}</time>
-                  {post.data.series && (
-                    <a
-                      href={`/serie/${post.data.series.toLowerCase().replace(/\s+/g, "-")}`}
-                      class="post-series"
-                    >
-                      {post.data.series}
-                    </a>
-                  )}
-                </div>
-                <h3 class="post-card-title">
-                  <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-                </h3>
-                <p class="post-card-desc">{post.data.description}</p>
-                <div class="post-card-tags">
-                  {post.data.tags.map((t) => (
-                    <a href={`/tag/${t}`} class="tag">
-                      {t}
-                    </a>
-                  ))}
-                </div>
-              </article>
-            ))
-          }
-        </div>
-      </div>
-
-      <!-- SIDEBAR -->
-      <aside class="posts-sidebar">
-        <!-- Tags -->
-        {
-          topTags.length > 0 && (
-            <div class="sidebar-widget">
-              <h3 class="widget-title">Tag</h3>
-              <div class="tag-cloud">
-                {topTags.map(([tag, count]) => (
-                  <a
-                    href={`/tag/${tag}`}
-                    class="tag"
-                    title={`${count} articoli`}
-                  >
-                    {tag}
-                  </a>
-                ))}
-              </div>
-            </div>
-          )
-        }
-
-        <!-- Series -->
-        {
-          allSeries.length > 0 && (
-            <div class="sidebar-widget">
-              <h3 class="widget-title">Serie</h3>
-              <ul class="series-list" role="list">
-                {allSeries
-                  .sort((a, b) => a.data.order - b.data.order)
-                  .map((s) => {
-                    const count = allPosts.filter(
-                      (p) => p.data.series === s.data.title,
-                    ).length;
-                    return (
-                      <li>
-                        <a href={`/serie/${s.slug}`} class="series-item">
-                          <span
-                            class="series-dot"
-                            style={`background:${s.data.color}`}
-                          />
-                          <span class="series-info">
-                            <strong>{s.data.title}</strong>
-                            <small>
-                              {count} {count === 1 ? "articolo" : "articoli"}
-                            </small>
-                          </span>
-                        </a>
-                      </li>
-                    );
-                  })}
-              </ul>
-            </div>
-          )
-        }
-
-        <!-- Download mini -->
-        <div class="sidebar-widget sidebar-download">
-          <h3 class="widget-title">⬇ Download</h3>
-          <p>
-            Chief Editor Beta v1.0.7 — disponibile per Windows, macOS e Linux.
-          </p>
-          <a href="/download" class="sidebar-dl-btn">Scarica ora — è gratis</a>
-        </div>
-      </aside>
+      <img src="/grafo.png" alt="Grafo degli autori affini in Chief Editor" loading="lazy" />
     </div>
   </section>
 </Base>
 
 <style>
-  /* ── HERO ── */
-  .hero {
-    padding: 5rem 0 4rem;
-    position: relative;
+  .landing-hero {
+    padding: 5.5rem 0 4.5rem;
     overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background:
+      linear-gradient(180deg, rgba(124, 58, 237, 0.08), transparent 42%),
+      var(--bg);
   }
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: -200px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 800px;
-    height: 600px;
-    background: radial-gradient(
-      ellipse,
-      rgba(124, 58, 237, 0.12) 0%,
-      transparent 70%
-    );
-    pointer-events: none;
-  }
-  .hero-header {
-    margin-bottom: 2.5rem;
-  }
-  .hero-grid {
+
+  .hero-shell {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3.5rem;
-    align-items: start;
-  }
-  .hero-badge {
-    display: inline-flex;
+    grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+    gap: 4rem;
     align-items: center;
-    gap: 8px;
-    background: rgba(245, 158, 11, 0.1);
-    border: 1px solid rgba(245, 158, 11, 0.25);
-    color: var(--gold);
-    border-radius: 20px;
-    padding: 4px 12px;
-    font-size: 0.775rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    margin-bottom: 1.25rem;
-  }
-  .pulse {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--gold);
-    animation: pulse 2s ease infinite;
-  }
-  @keyframes pulse {
-    0%,
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.5;
-      transform: scale(1.4);
-    }
-  }
-  .hero-title {
-    font-size: clamp(2.2rem, 4vw, 3.5rem);
-    font-weight: 900;
-    line-height: 1.05;
-    color: var(--text);
-    margin-bottom: 1rem;
-    letter-spacing: -0.03em;
-  }
-  .hero-title em {
-    color: var(--vio3);
-    font-style: italic;
-  }
-  .hero-sub {
-    font-size: 1.05rem;
-    color: var(--sub);
-    line-height: 1.65;
-    margin-bottom: 0;
   }
 
-  /* Download box */
-  .download-box {
-    background: var(--surf);
-    border: 1px solid var(--border2);
-    border-radius: 16px;
-    padding: 1.5rem;
-  }
-  .download-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--sub);
-    margin-bottom: 1rem;
-  }
-  .download-btns {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    margin-bottom: 1rem;
-  }
-  .dl-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    background: var(--surf2);
-    border: 1px solid var(--border2);
-    border-radius: 10px;
-    padding: 0.75rem 1rem;
-    text-decoration: none;
-    transition: all 0.2s;
-    color: var(--text);
-  }
-  .dl-btn:hover {
-    background: rgba(124, 58, 237, 0.1);
-    border-color: rgba(196, 181, 253, 0.3);
-    color: var(--vio3);
-    transform: translateX(3px);
-  }
-  .dl-btn svg {
-    color: var(--vio3);
-    flex-shrink: 0;
-  }
-  .dl-btn span {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-  }
-  .dl-btn strong {
-    font-size: 0.9rem;
-    font-weight: 600;
-  }
-  .dl-btn small {
-    font-size: 0.75rem;
-    color: var(--sub);
-  }
-  .dl-btn:hover small {
-    color: var(--vio3);
-    opacity: 0.7;
-  }
-  .download-note {
-    font-size: 0.775rem;
-    color: var(--sub);
-    margin: 0;
-  }
-  .download-note a {
-    color: var(--vio3);
-  }
-
-  /* Video */
-  .hero-right {
-    position: relative;
-  }
-  .video-frame {
-    position: relative;
-    border-radius: 14px;
-    overflow: hidden;
-    border: 1px solid var(--border2);
-    background: var(--surf);
-    aspect-ratio: 16/9;
-  }
-  .video-glow {
-    position: absolute;
-    inset: -2px;
-    border-radius: 16px;
-    background: linear-gradient(
-      135deg,
-      rgba(124, 58, 237, 0.4),
-      rgba(144, 97, 249, 0.1)
-    );
-    z-index: -1;
-    filter: blur(16px);
-  }
-  .video-frame iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-  .donate-box {
-    margin-top: 1.25rem;
-    text-align: center;
-  }
-  .donate-btn {
+  .eyebrow,
+  .section-kicker {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: #0070ba;
-    color: #fff;
-    border-radius: 8px;
-    padding: 0.6rem 1.2rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-  .donate-btn:hover {
-    opacity: 0.88;
-    color: #fff;
+    margin-bottom: 1rem;
+    color: var(--vio3);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
   }
 
-  /* ── INTRO ── */
-  .intro {
-    padding: 2.5rem 0 3rem;
-    border-bottom: 1px solid var(--border);
+  .eyebrow span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--vio3);
+    box-shadow: 0 0 18px rgba(196, 181, 253, 0.75);
   }
-  .intro-inner {
-    display: flex;
-    gap: 2.5rem;
-    align-items: flex-start;
-  }
-  .intro-line {
-    width: 3px;
-    min-height: 80px;
-    background: linear-gradient(to bottom, var(--vio), transparent);
-    border-radius: 2px;
-    flex-shrink: 0;
-    margin-top: 4px;
-  }
-  .intro-text p {
-    color: var(--text2);
-    font-size: 1.0625rem;
-    line-height: 1.8;
-    margin-bottom: 0.75rem;
-  }
-  .intro-text strong {
+
+  .hero-copy h1,
+  .product-section h2 {
+    max-width: 760px;
     color: var(--text);
+    font-size: clamp(2.7rem, 6vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
   }
-  .intro-cta-text {
-    font-size: 1rem;
-  }
-  .intro-cta-text a {
+
+  .hero-copy h1 em,
+  .product-section h2 em {
+    display: block;
     color: var(--vio3);
-    font-weight: 500;
+    font-style: italic;
   }
-  .intro-cta-text a:hover {
+
+  .hero-sub {
+    max-width: 620px;
+    margin: 1.4rem 0 0;
+    color: var(--text2);
+    font-family: var(--font-serif);
+    font-size: clamp(1.08rem, 2vw, 1.45rem);
+    font-style: italic;
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    border-radius: 10px;
+    padding: 0.78rem 1.35rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s, opacity 0.2s, border-color 0.2s;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--vio), var(--vio2));
+    color: #fff;
+    box-shadow: 0 12px 34px rgba(124, 58, 237, 0.35);
+  }
+
+  .btn-primary:hover {
+    color: #fff;
+    opacity: 0.92;
+  }
+
+  .btn-secondary {
+    border: 1px solid rgba(196, 181, 253, 0.22);
+    background: rgba(124, 58, 237, 0.08);
     color: var(--vio4);
   }
 
-  /* ── SECTIONS ── */
-  .section {
-    padding: 4rem 0;
-  }
-  .section-header {
+  .hero-proof {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 1.75rem;
-  }
-  .section-title {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    color: var(--text);
-    font-weight: 700;
-  }
-  .section-more {
-    font-size: 0.875rem;
-    color: var(--vio3);
-    font-weight: 500;
+    flex-wrap: wrap;
+    gap: 0.85rem 1.4rem;
+    margin-top: 1.8rem;
+    color: var(--sub);
+    font-size: 0.92rem;
   }
 
-  /* ── PINNED ── */
-  .pinned-section {
+  .hero-proof span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .hero-proof span::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--vio3);
+  }
+
+  .hero-product {
+    border: 1px solid rgba(196, 181, 253, 0.2);
+    border-radius: 16px;
+    background: var(--surf);
+    padding: 0.75rem;
+    box-shadow: 0 26px 70px rgba(0, 0, 0, 0.38);
+  }
+
+  .hero-product iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 10px;
+  }
+
+  .graph-grid img {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--border2);
+  }
+
+  .ticker {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background: var(--surf);
+    padding: 1rem 0;
+  }
+
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    gap: 3.2rem;
+    animation: tickerScroll 28s linear infinite;
+  }
+
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    white-space: nowrap;
+    color: var(--text2);
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+  }
+
+  .ticker-item b {
+    color: var(--vio3);
+    font-size: 0.78rem;
+  }
+
+  .ticker-fade {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 72px;
+    pointer-events: none;
+  }
+
+  .ticker-fade-left {
+    left: 0;
+    background: linear-gradient(90deg, var(--surf), transparent);
+  }
+
+  .ticker-fade-right {
+    right: 0;
+    background: linear-gradient(270deg, var(--surf), transparent);
+  }
+
+  @keyframes tickerScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .product-section {
+    padding: 5.5rem 0;
+  }
+
+  .product-section h2 {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    margin-bottom: 1rem;
+  }
+
+  .features-section,
+  .steps-section,
+  .graph-section {
+    background: var(--bg);
+  }
+
+  .audience-section,
+  .score-section {
     background: var(--bg2);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
-  .pinned-grid {
+
+  .feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.25rem;
-  }
-  .pinned-card {
-    background: var(--surf);
-    border: 1px solid var(--border2);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 2.8rem;
+    border: 1px solid rgba(196, 181, 253, 0.18);
     border-radius: 14px;
     overflow: hidden;
-    transition:
-      border-color 0.2s,
-      transform 0.2s;
-  }
-  .pinned-card:hover {
-    border-color: rgba(196, 181, 253, 0.3);
-    transform: translateY(-2px);
-  }
-  .pinned-img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-  }
-  .pinned-body {
-    padding: 1.25rem;
-  }
-  .pinned-title {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-  }
-  .pinned-title a {
-    color: var(--text);
-    text-decoration: none;
-  }
-  .pinned-title a:hover {
-    color: var(--vio3);
-  }
-  .pinned-desc {
-    font-size: 0.875rem;
-    color: var(--sub);
-    line-height: 1.6;
-    margin-bottom: 0.75rem;
+    background: rgba(196, 181, 253, 0.12);
+    gap: 1px;
   }
 
-  /* ── POSTS LAYOUT ── */
-  .posts-layout {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 3rem;
-    align-items: start;
-  }
-  .posts-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+  .feature-card {
+    min-height: 280px;
+    padding: 2rem;
+    background: var(--bg);
+    transition: background 0.2s;
   }
 
-  /* Post card */
-  .post-card {
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.15s;
-  }
-  .post-card:first-child {
-    padding-top: 0;
-  }
-  .post-card-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.5rem;
-  }
-  .post-card-meta time {
-    font-size: 0.8rem;
-    color: var(--sub);
-  }
-  .post-series {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--vio3);
-    background: rgba(124, 58, 237, 0.1);
-    border-radius: 20px;
-    padding: 1px 9px;
-    text-decoration: none;
-    border: 1px solid rgba(196, 181, 253, 0.15);
-  }
-  .post-card-title {
-    font-size: 1.2rem;
-    margin-bottom: 0.4rem;
-    font-weight: 700;
-    line-height: 1.3;
-  }
-  .post-card-title a {
-    color: var(--text);
-    text-decoration: none;
-  }
-  .post-card-title a:hover {
-    color: var(--vio3);
-  }
-  .post-card-desc {
-    font-size: 0.875rem;
-    color: var(--sub);
-    line-height: 1.65;
-    margin-bottom: 0.75rem;
-  }
-  .post-card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-
-  /* Meta shared */
-  .post-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-  .post-meta time {
-    font-size: 0.8rem;
-    color: var(--sub);
-  }
-
-  /* ── SIDEBAR ── */
-  .sidebar-widget {
+  .feature-card:hover {
     background: var(--surf);
-    border: 1px solid var(--border2);
-    border-radius: 12px;
-    padding: 1.25rem;
-    margin-bottom: 1.25rem;
   }
-  .widget-title {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--sub);
+
+  .feature-icon {
     margin-bottom: 1rem;
-    font-family: var(--font-sans);
+    font-size: 1.8rem;
   }
-  .tag-cloud {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-  .series-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-  .series-item {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    padding: 0.5rem 0.6rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.15s;
-  }
-  .series-item:hover {
-    background: var(--surf2);
-  }
-  .series-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .series-info {
-    display: flex;
-    flex-direction: column;
-  }
-  .series-info strong {
-    font-size: 0.875rem;
+
+  .feature-card h3,
+  .audience-card h3,
+  .step-card h3 {
+    margin-bottom: 0.55rem;
     color: var(--text);
+    font-size: 1.28rem;
   }
-  .series-info small {
-    font-size: 0.75rem;
-    color: var(--sub);
+
+  .feature-card p,
+  .audience-card p,
+  .step-card p,
+  .graph-grid p {
+    color: var(--text2);
+    font-size: 1rem;
+    line-height: 1.75;
   }
-  .sidebar-download p {
-    font-size: 0.85rem;
-    color: var(--sub);
-    margin-bottom: 0.85rem;
+
+  .feature-tag {
+    display: inline-flex;
+    margin-top: 1rem;
+    border-radius: 999px;
+    padding: 0.18rem 0.62rem;
+    background: color-mix(in srgb, var(--tag-color) 14%, transparent);
+    color: var(--tag-color);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 2.8rem;
+  }
+
+  .audience-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+    border: 1px solid rgba(196, 181, 253, 0.17);
+    border-radius: 14px;
+    background: var(--surf2);
+    padding: 1.6rem;
+    transition: transform 0.22s, box-shadow 0.22s;
+  }
+
+  .audience-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.32);
+  }
+
+  .audience-line {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    background: var(--card-line);
+  }
+
+  .audience-emoji {
+    margin: 0.4rem 0 1rem;
+    font-size: 2rem;
+  }
+
+  .steps-container {
+    text-align: center;
+  }
+
+  .steps-container h2 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .steps-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2rem;
+    margin-top: 3rem;
+  }
+
+  .steps-line {
+    position: absolute;
+    top: 28px;
+    left: 17%;
+    right: 17%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--vio3), transparent);
+  }
+
+  .step-card {
+    position: relative;
+    z-index: 1;
+    padding: 0 1.5rem;
+  }
+
+  .step-number {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 1.2rem;
+    border: 2px solid var(--vio3);
+    border-radius: 50%;
+    background: var(--surf);
+    color: var(--vio3);
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 900;
+    box-shadow: 0 0 24px rgba(124, 58, 237, 0.25);
+  }
+
+  .score-grid,
+  .graph-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.95fr);
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .score-lead {
+    max-width: 620px;
+    color: var(--text2);
+    font-size: 1.18rem;
+    line-height: 1.8;
+  }
+
+  .score-insights {
+    display: grid;
+    gap: 0.7rem;
+    margin-top: 1.6rem;
+  }
+
+  .score-insight {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+    border: 1px solid rgba(196, 181, 253, 0.15);
+    border-radius: 10px;
+    background: rgba(124, 58, 237, 0.05);
+    padding: 0.85rem;
+  }
+
+  .score-insight div {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    border-radius: 9px;
+    background: rgba(124, 58, 237, 0.14);
+    font-size: 1.3rem;
+  }
+
+  .score-insight span {
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  .score-insight strong {
+    color: var(--text);
+    font-size: 0.98rem;
+  }
+
+  .score-insight small {
+    color: var(--text2);
+    font-size: 0.9rem;
     line-height: 1.55;
   }
-  .sidebar-dl-btn {
+
+  .score-panel {
+    border: 1px solid rgba(196, 181, 253, 0.18);
+    border-radius: 14px;
+    background: var(--surf2);
+    padding: 1.5rem;
+  }
+
+  .score-panel-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+  }
+
+  .score-panel-head span {
     display: block;
-    text-align: center;
-    background: linear-gradient(135deg, var(--vio), var(--vio2));
-    color: #fff;
-    border-radius: 8px;
-    padding: 0.6rem 1rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-  .sidebar-dl-btn:hover {
-    opacity: 0.88;
-    color: #fff;
+    color: var(--text2);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
   }
 
-  .empty-state {
+  .score-panel-head small {
     color: var(--sub);
-    font-style: italic;
-    padding: 2rem 0;
   }
 
-  /* ── Responsive ── */
-  @media (max-width: 900px) {
-    .hero-grid {
+  .score-value {
+    text-align: right;
+  }
+
+  .score-value strong {
+    display: block;
+    color: #e8c84a;
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    line-height: 0.95;
+  }
+
+  .score-row {
+    display: grid;
+    grid-template-columns: 118px 1fr 34px;
+    gap: 0.65rem;
+    align-items: center;
+    margin-bottom: 0.7rem;
+  }
+
+  .score-row span,
+  .score-row b {
+    color: var(--text2);
+    font-size: 0.88rem;
+    font-weight: 500;
+  }
+
+  .score-row b {
+    text-align: right;
+  }
+
+  .score-bar {
+    height: 6px;
+    overflow: hidden;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  .score-bar i {
+    display: block;
+    width: var(--value);
+    height: 100%;
+    border-radius: inherit;
+    background: var(--bar);
+  }
+
+  .score-panel blockquote {
+    margin-top: 1.2rem;
+    border: 1px solid rgba(196, 181, 253, 0.16);
+    border-radius: 10px;
+    background: rgba(124, 58, 237, 0.08);
+    padding: 0.9rem 1rem;
+    color: var(--vio3);
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .graph-grid p {
+    max-width: 560px;
+    font-size: 1.12rem;
+  }
+
+  @media (max-width: 980px) {
+    .hero-shell,
+    .score-grid,
+    .graph-grid {
+      grid-template-columns: 1fr;
+      gap: 2.8rem;
+    }
+
+    .hero-product {
+      max-width: 720px;
+    }
+
+    .feature-grid,
+    .steps-grid {
       grid-template-columns: 1fr;
     }
-    .hero-right {
-      order: -1;
+
+    .feature-card {
+      min-height: unset;
     }
-    .posts-layout {
-      grid-template-columns: 1fr;
+
+    .audience-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    .posts-sidebar {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+
+    .steps-line {
+      display: none;
+    }
+
+    .step-card {
+      padding: 0;
     }
   }
-  @media (max-width: 600px) {
-    .hero {
-      padding: 3rem 0 2.5rem;
+
+  @media (max-width: 640px) {
+    .landing-hero,
+    .product-section {
+      padding: 3.5rem 0;
     }
-    .posts-sidebar {
+
+    .hero-shell {
+      gap: 2rem;
+    }
+
+    .hero-actions,
+    .btn {
+      width: 100%;
+    }
+
+    .hero-proof {
+      gap: 0.7rem;
+    }
+
+    .audience-grid {
       grid-template-columns: 1fr;
     }
-    .intro-inner {
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .intro-line {
-      width: 40px;
-      height: 3px;
+
+    .audience-card {
       min-height: unset;
-      background: linear-gradient(to right, var(--vio), transparent);
+    }
+
+    .score-panel {
+      padding: 1rem;
+    }
+
+    .score-panel-head {
+      align-items: flex-start;
+    }
+
+    .score-row {
+      grid-template-columns: 94px 1fr 30px;
+      gap: 0.5rem;
+    }
+
+    .score-row span,
+    .score-row b {
+      font-size: 0.78rem;
     }
   }
 </style>
