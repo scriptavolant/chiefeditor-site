@@ -137,6 +137,17 @@ const scoreBars = [
         <div class="hero-actions" aria-label="Azioni principali">
           <a class="btn btn-primary" href="/download">Download Beta</a>
           <a class="btn btn-secondary" href="/aiuto">Scopri come funziona</a>
+          <a
+            class="btn donate-btn"
+            href="https://www.paypal.com/donate?hosted_button_id=FYTEBXM23E36E"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.622 1.566 1.035.974 1.481 2.408 1.34 3.948-.173 1.92-.98 3.181-2.19 4.15-.883.712-1.988 1.19-3.087 1.565-1.827.625-3.691 1.062-5.173 1.514-.264.081-.521.15-.767.21a.64.64 0 0 1-.267 0c-.265-.06-.522-.129-.767-.21-1.482-.452-3.346-.889-5.173-1.514-1.099-.375-2.204-.853-3.087-1.565C.645 6.615-.162 5.354 0 3.434.141 1.894.587.46 1.622.486 2.666.512 4.674.055 7.244.055h7.46c.524 0 .972.382 1.054.901l3.107 19.696a.641.641 0 0 1-.633.74H16.92c-.446 0-.84-.37-.934-.813a.638.638 0 0 1 .063-.362l1.348-6.956c.042-.216.055-.333.055-.333.117-.665.117-1.176 0-1.519-.426-1.235-1.744-1.635-3.146-1.635h-4.49c-.45 0-.84.37-.934.813a.638.638 0 0 1 .063.362l1.348 6.956c.042.216.055.333.055.333.117.665.117 1.176 0 1.519-.426 1.235-1.744 1.635-3.146 1.635H7.076z"/>
+            </svg>
+            Dona con PayPal
+          </a>
         </div>
         <div class="hero-proof">
           <span>Score e analisi DNA letterario</span>
@@ -385,6 +396,22 @@ const scoreBars = [
     border: 1px solid rgba(196, 181, 253, 0.22);
     background: rgba(124, 58, 237, 0.08);
     color: var(--vio4);
+  }
+
+  .donate-btn {
+    gap: 0.5rem;
+    min-height: 48px;
+    border-radius: 8px;
+    background: #0070ba;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: none;
+  }
+
+  .donate-btn:hover {
+    color: #fff;
+    opacity: 0.88;
   }
 
   .hero-proof {
