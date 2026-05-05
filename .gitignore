@@ -7,3 +7,6 @@ downloads/*.msi
 downloads/*.dmg
 downloads/*.AppImage
 downloads/*.deb
+src/content/blog/.obsidian/
+src/content/blog/.trash/
+src/content/blog/modelli/

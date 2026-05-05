@@ -21,7 +21,7 @@ Gli otto archetipi di Chief Editor non sono categorie rigide né test della pers
 
 Il Profilo stilistico dell'utente è diviso nelle sezioni: Dna Stilistico, Correnti filosofiche, Tendenze inconsce, Linguaggio letterario, Zone d'ombra, Percorso di crescita. Di seguito uno screenshot e lo stralcio di alcune sezioni di un profilo di esempio. 
 
-![Screenshot Profilo](/public/profilo.png)
+![Screenshot Profilo](/profilo.png)
 
 <div align="center"><em>screenshot del profilo avanzato: lo scrutatore dell'anima</em></div>
 <br />
@@ -71,7 +71,7 @@ Tabella di calibrazione nel prompt: 1-4 = problemi strutturali seri, 5-6 = poten
 
 Chief Editor ha un obbligo esplicito: inserire "almeno una frase che identifichi il problema principale senza attenuarlo — non concludere con incoraggiamento generico."
 
-![screenshot grafo](/public/grafo.png)
+![screenshot grafo](/grafo.png)
 <div align="center"><em>screenshot grafo del profilo avanzato</em></div>
 
 ## Come costruire il profilo
@@ -133,4 +133,3 @@ L'AI identifica i generi dominanti, gli autori più letti, e produce un'analisi 
 L'archetipo si aggiorna. Se cambiano i tuoi autori di riferimento, se le letture dell'utente lo portano altrove, se la sua  scrittura si sposta — il profilo si può rigenerare. Non è un'etichetta permanente: è una mappa che si ridisegna mentre cammini.
 
 Rigenerare il profilo ogni tre o sei mesi. Confrontare gli archetipi: vedere come cambia (o come non cambia) dice qualcosa sulla traiettoria come scrittore.
-

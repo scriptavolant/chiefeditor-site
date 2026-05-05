@@ -159,6 +159,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"modelli/post_base.md": {
+	id: "modelli/post_base.md";
+  slug: "modelli/post_base";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "otto-archetipi-letterari.md": {
 	id: "otto-archetipi-letterari.md";
   slug: "otto-archetipi-letterari";
