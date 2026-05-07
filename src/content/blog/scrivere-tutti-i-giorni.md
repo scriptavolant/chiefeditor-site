@@ -3,7 +3,7 @@ title: "Scrivere tutti ti giorni: 750 parole e il potere della streak"
 description: "Come funziona il diario guidato di Chief Editor, perché 750 parole è il numero giusto, come usare le categorie e il versioning per costruire un'abitudine di scrittura solida."
 pubDate: 2026-05-02
 tags: ["diario", "750 parole", "routine", "scrittura quotidiana", "streak"]
-series: "Come funziona Chief Editor"
+series: "Chief Editor Insight"
 seriesOrder: 2
 pinned: false
 ---

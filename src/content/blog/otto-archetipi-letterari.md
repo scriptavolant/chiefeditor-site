@@ -3,7 +3,7 @@ title: "Il profilo letterario: archetipi, DNA stilistico e Goodreads"
 description: "Chi sei, quando scrivi? I profili stilistici che Chief Editor usa per calibrare le sue analisi."
 pubDate: 2026-05-03
 tags: ["profilo Chief Editor", "archetipi", "voce letteraria"]
-series: "Come funziona Chief Editor"
+series: "Chief Editor Insight"
 seriesOrder: 4
 pinned: false
 ---

@@ -3,7 +3,7 @@ title: "Strumenti AI: umore, ortografia, critica letteraria e tipologia del test
 description: "I quattro strumenti AI di Chief Editor — analisi dell'umore, controllo ortografico, critica letteraria e verifica revisione — e come usarli nel modo giusto."
 pubDate: 2026-05-02
 tags: ["AI", "critica letteraria", "analisi umore", "tipologia del testo", "chief editor"]
-series: "Come funziona Chief Editor"
+series: "Chief Editor Insight"
 seriesOrder: 3
 pinned: true
 ---

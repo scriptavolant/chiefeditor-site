@@ -3,7 +3,7 @@ title: "Benvenuto su Chief Editor Blog"
 description: "Come nasce questo progetto, perché lo racconto, e cosa troverai in questo blog."
 pubDate: 2026-05-01
 tags: ["chief editor", "scrittura"]
-series: "Come funziona Chief Editor"
+series: "Chief Editor Insight"
 seriesOrder: 1
 pinned: true
 
