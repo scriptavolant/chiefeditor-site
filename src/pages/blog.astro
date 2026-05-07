@@ -1,17 +1,39 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
-const posts = (await getCollection('blog', ({data})=>!data.draft)).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf());
+const posts = (await getCollection('blog', ({data})=>!data.draft)).sort((a,b)=>{
+  if (a.data.pinned !== b.data.pinned) return a.data.pinned ? -1 : 1;
+  return b.data.pubDate.valueOf()-a.data.pubDate.valueOf();
+});
+const series = (await getCollection('series')).sort((a,b)=>a.data.order-b.data.order || a.data.title.localeCompare(b.data.title));
 function formatDate(d) { return d.toLocaleDateString('it-IT',{day:'numeric',month:'long',year:'numeric'}); }
 ---
 <Base title="Blog">
 <section class="page-hero"><div class="container"><h1>Blog</h1><p>{posts.length} articoli</p></div></section>
+{series.length > 0 && (
+  <section class="series-nav" aria-label="Navigazione serie">
+    <div class="container">
+      <p class="series-label">Serie</p>
+      <div class="series-buttons">
+        {series.map((s)=>(
+          <a class="series-button" href={`/serie/${s.slug}`} style={`--series-color:${s.data.color}`}>
+            <span class="series-dot"></span>
+            <span>{s.data.title}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
 <div class="container archive-list">
   {posts.map(p=>(
     <article class="arc-item">
       <time>{formatDate(p.data.pubDate)}</time>
       <div>
-        <h2><a href={`/blog/${p.slug}`}>{p.data.title}</a></h2>
+        <h2>
+          <a href={`/blog/${p.slug}`}>{p.data.title}</a>
+          {p.data.pinned && <span class="pin-badge">In evidenza</span>}
+        </h2>
         <p>{p.data.description}</p>
         <div class="arc-tags">{p.data.tags.map(t=>(<a href={`/tag/${t}`} class="tag">{t}</a>))}</div>
       </div>
@@ -24,14 +46,21 @@ function formatDate(d) { return d.toLocaleDateString('it-IT',{day:'numeric',mont
 .page-hero{padding:3.5rem 0 2rem;border-bottom:1px solid var(--border);}
 .page-hero h1{font-family:var(--font-serif);font-size:2.5rem;color:var(--text);margin-bottom:.4rem;}
 .page-hero p{color:var(--sub);font-size:.9rem;}
+.series-nav{border-bottom:1px solid var(--border);background:var(--surf);padding:1.35rem 0;}
+.series-label{margin-bottom:.7rem;color:var(--sub);font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;}
+.series-buttons{display:flex;flex-wrap:wrap;gap:.65rem;}
+.series-button{display:inline-flex;align-items:center;gap:.5rem;min-height:42px;border:1px solid color-mix(in srgb,var(--series-color) 38%,var(--border));border-radius:8px;background:color-mix(in srgb,var(--series-color) 10%,transparent);padding:.55rem .85rem;color:var(--text2);font-size:.9rem;font-weight:700;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,color .2s;}
+.series-button:hover{transform:translateY(-1px);border-color:var(--series-color);background:color-mix(in srgb,var(--series-color) 16%,transparent);color:var(--text);}
+.series-dot{width:8px;height:8px;border-radius:50%;background:var(--series-color);box-shadow:0 0 16px color-mix(in srgb,var(--series-color) 65%,transparent);flex:0 0 auto;}
 .archive-list{padding:2.5rem 0 5rem;display:flex;flex-direction:column;gap:0;}
 .arc-item{display:grid;grid-template-columns:130px 1fr;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border);align-items:start;}
 .arc-item time{font-size:.8rem;color:var(--sub);padding-top:.35rem;}
-.arc-item h2{font-size:1.1rem;margin-bottom:.35rem;}
+.arc-item h2{display:flex;align-items:center;flex-wrap:wrap;gap:.55rem;font-size:1.1rem;margin-bottom:.35rem;}
 .arc-item h2 a{color:var(--text);text-decoration:none;}
 .arc-item h2 a:hover{color:var(--vio3);}
 .arc-item p{font-size:.875rem;color:var(--sub);margin-bottom:.6rem;line-height:1.6;}
 .arc-tags{display:flex;flex-wrap:wrap;gap:.35rem;}
+.pin-badge{display:inline-flex;align-items:center;border-radius:999px;background:rgba(232,200,74,.12);border:1px solid rgba(232,200,74,.28);padding:.14rem .48rem;color:#e8c84a;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
 .empty{color:var(--sub);font-style:italic;padding:3rem 0;}
 @media(max-width:600px){.arc-item{grid-template-columns:1fr;gap:.5rem;}.arc-item time{padding-top:0;}}
 </style>

@@ -5,7 +5,7 @@ pubDate: 2026-05-02
 tags: ["diario", "750 parole", "routine", "scrittura quotidiana", "streak"]
 series: "Come funziona Chief Editor"
 seriesOrder: 2
-pinned: true
+pinned: false
 ---
 Il miglior approccio con Chief Editor e quello di usarlo per una scrittura libera e quotidiana. Scrivere almeno 750 parole al giorno per allenare tutti i muscoli dello scrittore che, in fondo è un atleta della parola. 
 

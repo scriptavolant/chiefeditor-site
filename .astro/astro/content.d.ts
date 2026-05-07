@@ -187,11 +187,25 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"tutorial-setup.md": {
+	id: "tutorial-setup.md";
+  slug: "tutorial-setup";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 };
 "series": {
 "come-funziona.md": {
 	id: "come-funziona.md";
   slug: "come-funziona";
+  body: string;
+  collection: "series";
+  data: InferEntrySchema<"series">
+} & { render(): Render[".md"] };
+"tutorial.md": {
+	id: "tutorial.md";
+  slug: "tutorial";
   body: string;
   collection: "series";
   data: InferEntrySchema<"series">
