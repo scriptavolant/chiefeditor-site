@@ -3,8 +3,8 @@ title: "Tutorial Set up profilo autore Chief Editori"
 description: "come si configura Chief Editor. L'autore si presenta all'editor."
 pubDate: 2026-05-07
 tags: ["chief editor", "scrittura", "tutorial"]
-series: "Come funziona Chief Editor"
-seriesOrder: 5
+series: "tutorial"
+seriesOrder: 1
 pinned: true
 
 ---
