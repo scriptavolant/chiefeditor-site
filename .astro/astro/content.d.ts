@@ -187,6 +187,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"tutorial-2-analisi-stilistica.md": {
+	id: "tutorial-2-analisi-stilistica.md";
+  slug: "tutorial-2-analisi-stilistica";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "tutorial-setup.md": {
 	id: "tutorial-setup.md";
   slug: "tutorial-setup";

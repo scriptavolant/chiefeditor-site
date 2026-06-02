@@ -1,7 +1,7 @@
 ---
 title: "Tutorial 2: analisi stilistica"
 description: Breve panoramica del cuore di Chief Editor, l'analisi stilistica di un testo
-pubDate: 2026-05-01
+pubDate: 2026-06-02
 tags:
   - scrittura
 series: Come funziona Chief Editor, tutorial
