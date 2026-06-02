@@ -12,6 +12,8 @@ draft: false
 
 Il cuore pulsante di Chief Editor è il motore multi-AI per generare le analisi critiche del testo. Dopo almeno 150 parole scritte, il pulsante **Chief Editor** si attiva. Premendolo, l'app invia il testo a un modello di lingua calibrato per la critica letteraria: in pochi secondi restituisce un'analisi strutturata in sette elementi distinti. Non è un correttore ortografico. È uno strumento di feedback sulla voce, sullo stile e sulla profondità del testo.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CUObtKUe0pM?si=Cvb3jcL2DyZ_Qwam" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ---
 
 ## I sette elementi di una critica
