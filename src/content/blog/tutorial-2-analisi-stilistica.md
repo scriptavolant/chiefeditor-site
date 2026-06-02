@@ -7,7 +7,7 @@ tags:
 series: Come funziona Chief Editor, tutorial
 seriesOrder: 2
 pinned: true
-draft: true
+draft: false
 ---
 
 Il cuore pulsante di Chief Editor è il motore multi-AI per generare le analisi critiche del testo. Dopo almeno 150 parole scritte, il pulsante **Chief Editor** si attiva. Premendolo, l'app invia il testo a un modello di lingua calibrato per la critica letteraria: in pochi secondi restituisce un'analisi strutturata in sette elementi distinti. Non è un correttore ortografico. È uno strumento di feedback sulla voce, sullo stile e sulla profondità del testo.
